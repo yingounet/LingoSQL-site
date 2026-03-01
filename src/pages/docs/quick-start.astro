@@ -1,0 +1,231 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CodeBlock from '../../components/ui/CodeBlock.astro';
+---
+
+<BaseLayout
+  title="快速开始"
+  description="快速部署 LingoSQL 的完整指南，支持 Docker、Docker Compose 和源码编译方式。"
+>
+  {/* Header */}
+  <section class="bg-gradient-to-b from-primary-50 to-white dark:from-dark-surface dark:to-dark-bg py-20">
+    <div class="section-container text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-6">
+        快速
+        <span class="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">开始</span>
+      </h1>
+      <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        选择适合你的部署方式，几分钟内完成 LingoSQL 的安装
+      </p>
+    </div>
+  </section>
+  
+  {/* Deployment Options */}
+  <section class="section-container">
+    <div class="grid md:grid-cols-3 gap-6 mb-16">
+      <a href="#docker" class="card p-6 hover:border-primary-300 dark:hover:border-primary-600">
+        <div class="text-4xl mb-4">🐳</div>
+        <h3 class="text-xl font-semibold mb-2">Docker</h3>
+        <p class="text-slate-600 dark:text-slate-400">最简单的方式，一条命令启动服务</p>
+      </a>
+      
+      <a href="#compose" class="card p-6 hover:border-primary-300 dark:hover:border-primary-600">
+        <div class="text-4xl mb-4">📦</div>
+        <h3 class="text-xl font-semibold mb-2">Docker Compose</h3>
+        <p class="text-slate-600 dark:text-slate-400">编排多个服务，适合生产环境</p>
+      </a>
+      
+      <a href="#source" class="card p-6 hover:border-primary-300 dark:hover:border-primary-600">
+        <div class="text-4xl mb-4">🔧</div>
+        <h3 class="text-xl font-semibold mb-2">源码编译</h3>
+        <p class="text-slate-600 dark:text-slate-400">从源码构建，完全自定义</p>
+      </a>
+    </div>
+    
+    {/* Docker Section */}
+    <div id="docker" class="scroll-mt-24">
+      <h2 class="text-3xl font-bold mb-6 flex items-center">
+        <span class="text-4xl mr-3">🐳</span>
+        Docker 部署
+      </h2>
+      
+      <div class="card p-8 mb-8">
+        <h3 class="text-xl font-semibold mb-4">1. 拉取 Docker 镜像</h3>
+        <div class="bg-slate-900 rounded-xl p-6 overflow-x-auto">
+          <pre class="text-sm text-slate-300"><code>docker pull registry.cn-shanghai.aliyuncs.com/yingounet/lingosql:latest</code></pre>
+        </div>
+      </div>
+
+      <div class="card p-8 mb-8">
+        <h3 class="text-xl font-semibold mb-4">2. 运行容器</h3>
+        <div class="bg-slate-900 rounded-xl p-6 overflow-x-auto">
+          <pre class="text-sm text-slate-300"><code>{`docker run -d \\
+  --name lingosql \\
+  -p 8080:8080 \\
+  -v lingosql_data:/app/data \\
+  -e JWT_SECRET="your-secret-key-change-this" \\
+  -e DB_ENCRYPTION_KEY="your-32-char-encryption-key" \\
+  registry.cn-shanghai.aliyuncs.com/yingounet/lingosql:latest`}</code></pre>
+        </div>
+
+        <div class="mt-6 p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
+          <p class="text-sm text-yellow-800 dark:text-yellow-400">
+            <strong>注意：</strong>请务必修改 <code>JWT_SECRET</code> 和 <code>DB_ENCRYPTION_KEY</code> 为你的安全密钥！
+          </p>
+        </div>
+      </div>
+      
+      <div class="card p-8">
+        <h3 class="text-xl font-semibold mb-4">3. 访问服务</h3>
+        <p class="text-slate-600 dark:text-slate-400 mb-4">
+          启动后，在浏览器访问：
+        </p>
+        <div class="bg-slate-900 rounded-xl p-6 overflow-x-auto">
+          <pre class="text-sm text-slate-300"><code>http://localhost:8080</code></pre>
+        </div>
+        <p class="text-sm text-slate-500 dark:text-slate-500 mt-4">
+          默认管理员账号：<code>admin / admin123</code>（首次登录后请修改密码）
+        </p>
+      </div>
+    </div>
+    
+    {/* Docker Compose Section */}
+    <div id="compose" class="scroll-mt-24 mt-20">
+      <h2 class="text-3xl font-bold mb-6 flex items-center">
+        <span class="text-4xl mr-3">📦</span>
+        Docker Compose 部署
+      </h2>
+      
+      <div class="card p-8 mb-8">
+        <h3 class="text-xl font-semibold mb-4">1. 创建 docker-compose.yml</h3>
+        <div class="bg-slate-900 rounded-xl p-6 overflow-x-auto">
+          <pre class="text-sm text-slate-300"><code>{`version: '3.8'
+
+services:
+  lingosql:
+    image: registry.cn-shanghai.aliyuncs.com/yingounet/lingosql:latest
+    container_name: lingosql
+    ports:
+      - "8080:8080"
+    volumes:
+      - lingosql_data:/app/data
+    environment:
+      - JWT_SECRET=\${JWT_SECRET:-your-secret-key}
+      - DB_ENCRYPTION_KEY=\${DB_ENCRYPTION_KEY:-your-32-char-encryption-key}
+    restart: unless-stopped
+
+volumes:
+  lingosql_data:`}</code></pre>
+        </div>
+      </div>
+      
+      <div class="card p-8 mb-8">
+        <h3 class="text-xl font-semibold mb-4">2. 创建 .env 文件（可选）</h3>
+        <div class="bg-slate-900 rounded-xl p-6 overflow-x-auto">
+          <pre class="text-sm text-slate-300"><code>JWT_SECRET=your-secure-jwt-secret-key
+DB_ENCRYPTION_KEY=your-32-character-encryption-key</code></pre>
+        </div>
+      </div>
+      
+      <div class="card p-8">
+        <h3 class="text-xl font-semibold mb-4">3. 启动服务</h3>
+        <div class="bg-slate-900 rounded-xl p-6 overflow-x-auto">
+          <pre class="text-sm text-slate-300"><code>docker-compose up -d</code></pre>
+        </div>
+        <p class="text-sm text-slate-500 dark:text-slate-500 mt-4">
+          查看日志：<code>docker-compose logs -f</code>
+        </p>
+      </div>
+    </div>
+    
+    {/* Source Build Section */}
+    <div id="source" class="scroll-mt-24 mt-20">
+      <h2 class="text-3xl font-bold mb-6 flex items-center">
+        <span class="text-4xl mr-3">🔧</span>
+        源码编译部署
+      </h2>
+      
+      <div class="card p-8 mb-8">
+        <h3 class="text-xl font-semibold mb-4">前置要求</h3>
+        <ul class="space-y-2 text-slate-600 dark:text-slate-400">
+          <li class="flex items-center">
+            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            Go 1.21+
+          </li>
+          <li class="flex items-center">
+            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            Node.js 18+
+          </li>
+          <li class="flex items-center">
+            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            pnpm
+          </li>
+        </ul>
+      </div>
+      
+      <div class="card p-8 mb-8">
+        <h3 class="text-xl font-semibold mb-4">1. 克隆仓库</h3>
+        <div class="bg-slate-900 rounded-xl p-6 overflow-x-auto">
+          <pre class="text-sm text-slate-300"><code>git clone https://github.com/yingounet/LingoSQL.git
+cd LingoSQL</code></pre>
+        </div>
+      </div>
+      
+      <div class="card p-8 mb-8">
+        <h3 class="text-xl font-semibold mb-4">2. 构建后端</h3>
+        <div class="bg-slate-900 rounded-xl p-6 overflow-x-auto">
+          <pre class="text-sm text-slate-300"><code>cd backend
+go mod download
+go build -o lingosql</code></pre>
+        </div>
+      </div>
+      
+      <div class="card p-8 mb-8">
+        <h3 class="text-xl font-semibold mb-4">3. 构建前端</h3>
+        <div class="bg-slate-900 rounded-xl p-6 overflow-x-auto">
+          <pre class="text-sm text-slate-300"><code>cd ../frontend
+pnpm install
+pnpm build</code></pre>
+        </div>
+      </div>
+      
+      <div class="card p-8">
+        <h3 class="text-xl font-semibold mb-4">4. 运行服务</h3>
+        <div class="bg-slate-900 rounded-xl p-6 overflow-x-auto">
+          <pre class="text-sm text-slate-300"><code>cd ../backend
+./lingosql</code></pre>
+        </div>
+        <p class="text-sm text-slate-500 dark:text-slate-500 mt-4">
+          服务将在 <code>http://localhost:8080</code> 启动
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  {/* Next Steps */}
+  <section class="py-20 bg-slate-50 dark:bg-dark-surface">
+    <div class="section-container">
+      <h2 class="text-3xl font-bold text-center mb-8">下一步</h2>
+      <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <a href="/docs/config" class="card p-6 hover:border-primary-300 dark:hover:border-primary-600">
+          <h3 class="font-semibold mb-2">⚙️ 配置指南</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">了解 config.yaml 的各项配置参数</p>
+        </a>
+        <a href="/docs/tutorial" class="card p-6 hover:border-primary-300 dark:hover:border-primary-600">
+          <h3 class="font-semibold mb-2">📖 使用教程</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">学习如何添加连接和执行查询</p>
+        </a>
+        <a href="/docs/api" class="card p-6 hover:border-primary-300 dark:hover:border-primary-600">
+          <h3 class="font-semibold mb-2">📡 API 参考</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">查看 RESTful API 文档</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+
+Astro.status = 404;
+---
+
+<BaseLayout
+  title="页面未找到"
+  description="抱歉，您访问的页面不存在。"
+  noindex={true}
+>
+  <section class="min-h-[80vh] flex items-center justify-center bg-gradient-to-b from-primary-50 to-white dark:from-dark-surface dark:to-dark-bg">
+    <div class="section-container text-center">
+      <!-- 404 Animation -->
+      <div class="mb-8">
+        <div class="inline-flex items-center justify-center w-32 h-32 rounded-full bg-gradient-to-br from-primary-100 to-accent-100 dark:from-primary-900/30 dark:to-accent-900/30 mb-6">
+          <span class="text-6xl">🔍</span>
+        </div>
+      </div>
+      
+      <!-- Heading -->
+      <h1 class="text-6xl sm:text-8xl font-bold mb-4 bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
+        404
+      </h1>
+      
+      <!-- Message -->
+      <h2 class="text-2xl sm:text-3xl font-semibold mb-4">
+        页面未找到
+      </h2>
+      <p class="text-lg text-slate-600 dark:text-slate-400 max-w-md mx-auto mb-8">
+        抱歉，您访问的页面不存在或已被移除。请检查 URL 是否正确，或返回首页。
+      </p>
+      
+      <!-- Actions -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <Button href="/" variant="primary" size="lg">
+          <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          <span>返回首页</span>
+        </Button>
+        
+        <Button href="/docs" variant="secondary" size="lg">
+          <span>查看文档</span>
+        </Button>
+      </div>
+      
+      <!-- Helpful Links -->
+      <div class="mt-16 pt-8 border-t border-slate-200 dark:border-dark-border">
+        <p class="text-sm text-slate-500 dark:text-slate-500 mb-6">热门页面</p>
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a href="/features" class="text-primary-600 dark:text-primary-400 hover:underline">
+            功能特性
+          </a>
+          <span class="text-slate-300 dark:text-slate-600">•</span>
+          <a href="/docs" class="text-primary-600 dark:text-primary-400 hover:underline">
+            文档中心
+          </a>
+          <span class="text-slate-300 dark:text-slate-600">•</span>
+          <a href="/about" class="text-primary-600 dark:text-primary-400 hover:underline">
+            关于项目
+          </a>
+          <span class="text-slate-300 dark:text-slate-600">•</span>
+          <a href="https://github.com/yingounet/LingoSQL" 
+             target="_blank"
+             rel="noopener noreferrer"
+             class="text-primary-600 dark:text-primary-400 hover:underline">
+            GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,67 @@
+---
+// src/components/home/FeatureCard.astro
+import Badge from '../ui/Badge.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  href?: string;
+  status?: 'stable' | 'developing' | 'planned';
+  delay?: number;
+}
+
+const { title, description, icon, href, status = 'stable', delay = 0 } = Astro.props;
+
+const statusConfig = {
+  stable: { label: '稳定', color: 'green' as const },
+  developing: { label: '开发中', color: 'yellow' as const },
+  planned: { label: '规划中', color: 'gray' as const }
+};
+
+const statusInfo = statusConfig[status];
+---
+
+<article 
+  class:list={[
+    'card p-6 sm:p-8 group cursor-pointer',
+    href ? 'hover:border-primary-300 dark:hover:border-primary-600' : ''
+  ]}
+  style={`animation: slide-up 0.5s ease-out ${delay}s backwards`}
+>
+  <div class="flex items-start justify-between mb-4">
+    <!-- Icon -->
+    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-100 to-primary-200 
+                dark:from-primary-900/50 dark:to-primary-800/50 
+                flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+      <span class="text-2xl">{icon}</span>
+    </div>
+    
+    <!-- Status Badge -->
+    {status !== 'stable' && (
+      <Badge color={statusInfo.color} size="sm">{statusInfo.label}</Badge>
+    )}
+  </div>
+  
+  <!-- Title -->
+  <h3 class="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
+    {title}
+  </h3>
+  
+  <!-- Description -->
+  <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+    {description}
+  </p>
+  
+  <!-- Learn More Link -->
+  {href && (
+    <div class="mt-4 flex items-center text-primary-600 dark:text-primary-400 
+                font-medium text-sm group/link">
+      <span>了解更多</span>
+      <svg class="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform" 
+           fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </div>
+  )}
+</article>

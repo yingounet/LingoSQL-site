@@ -1,0 +1,252 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="关于"
+  description="了解 LingoSQL 项目的背景、目标、技术栈和开源贡献方式。"
+>
+  <!-- Header -->
+  <section class="bg-gradient-to-b from-primary-50 to-white dark:from-dark-surface dark:to-dark-bg py-20">
+    <div class="section-container text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-6">
+        关于
+        <span class="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">LingoSQL</span>
+      </h1>
+      <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        一个现代化的 Web 数据库管理工具，让数据库操作变得简单高效
+      </p>
+    </div>
+  </section>
+  
+  <!-- Project Background -->
+  <section class="section-container">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6">项目背景</h2>
+      <div class="card p-8">
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+          LingoSQL 的诞生源于一个简单的需求：在浏览器中方便地管理数据库。传统的数据库管理工具如 
+          phpMyAdmin、Navicat 等虽然功能强大，但往往需要安装客户端或配置复杂的环境。
+        </p>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+          我们希望打造一个轻量级、易部署、现代化的替代方案。基于 Golang 和 Vue 3 构建，
+          LingoSQL 提供了简洁的 Web 界面，让开发者可以随时随地通过浏览器管理数据库。
+        </p>
+        <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+          项目采用 MIT 开源协议，欢迎所有人使用和贡献。
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Project Goals -->
+  <section class="py-20 bg-slate-50 dark:bg-dark-surface">
+    <div class="section-container">
+      <h2 class="text-3xl font-bold text-center mb-12">项目目标</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="card p-6">
+          <div class="text-4xl mb-4">🎯</div>
+          <h3 class="text-xl font-semibold mb-2">易于部署</h3>
+          <p class="text-slate-600 dark:text-slate-400">
+            支持 Docker 一键部署，无需复杂配置，几分钟内即可使用
+          </p>
+        </div>
+        
+        <div class="card p-6">
+          <div class="text-4xl mb-4">💻</div>
+          <h3 class="text-xl font-semibold mb-2">现代化界面</h3>
+          <p class="text-slate-600 dark:text-slate-400">
+            基于 Vue 3 和 Element Plus，提供流畅的用户体验
+          </p>
+        </div>
+        
+        <div class="card p-6">
+          <div class="text-4xl mb-4">🔒</div>
+          <h3 class="text-xl font-semibold mb-2">安全可靠</h3>
+          <p class="text-slate-600 dark:text-slate-400">
+            JWT 认证 + AES-256 加密，保障数据库访问安全
+          </p>
+        </div>
+        
+        <div class="card p-6">
+          <div class="text-4xl mb-4">🚀</div>
+          <h3 class="text-xl font-semibold mb-2">高性能</h3>
+          <p class="text-slate-600 dark:text-slate-400">
+            Golang 后端，高效处理并发请求和大数据量查询
+          </p>
+        </div>
+        
+        <div class="card p-6">
+          <div class="text-4xl mb-4">📦</div>
+          <h3 class="text-xl font-semibold mb-2">开源免费</h3>
+          <p class="text-slate-600 dark:text-slate-400">
+            MIT 协议，完全免费，欢迎贡献和使用
+          </p>
+        </div>
+        
+        <div class="card p-6">
+          <div class="text-4xl mb-4">🤖</div>
+          <h3 class="text-xl font-semibold mb-2">AI 集成</h3>
+          <p class="text-slate-600 dark:text-slate-400">
+            未来将集成 AI 能力，支持自然语言生成 SQL
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Tech Stack -->
+  <section class="section-container">
+    <h2 class="text-3xl font-bold text-center mb-12">技术栈</h2>
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <!-- Backend -->
+      <div class="card p-8">
+        <h3 class="text-2xl font-semibold mb-6 flex items-center">
+          <span class="text-3xl mr-3">🔧</span>
+          后端技术
+        </h3>
+        <ul class="space-y-4">
+          <li class="flex items-center justify-between">
+            <span class="text-slate-600 dark:text-slate-400">编程语言</span>
+            <span class="font-medium">Golang 1.21+</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-slate-600 dark:text-slate-400">Web 框架</span>
+            <span class="font-medium">Gin</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-slate-600 dark:text-slate-400">元数据存储</span>
+            <span class="font-medium">SQLite</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-slate-600 dark:text-slate-400">数据库驱动</span>
+            <span class="font-medium">go-sql-driver/mysql, pgx</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-slate-600 dark:text-slate-400">认证</span>
+            <span class="font-medium">JWT</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-slate-600 dark:text-slate-400">加密</span>
+            <span class="font-medium">AES-256</span>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Frontend -->
+      <div class="card p-8">
+        <h3 class="text-2xl font-semibold mb-6 flex items-center">
+          <span class="text-3xl mr-3">🎨</span>
+          前端技术
+        </h3>
+        <ul class="space-y-4">
+          <li class="flex items-center justify-between">
+            <span class="text-slate-600 dark:text-slate-400">框架</span>
+            <span class="font-medium">Vue 3</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-slate-600 dark:text-slate-400">语言</span>
+            <span class="font-medium">TypeScript</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-slate-600 dark:text-slate-400">UI 组件库</span>
+            <span class="font-medium">Element Plus</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-slate-600 dark:text-slate-400">构建工具</span>
+            <span class="font-medium">Vite</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-slate-600 dark:text-slate-400">状态管理</span>
+            <span class="font-medium">Pinia</span>
+          </li>
+          <li class="flex items-center justify-between">
+            <span class="text-slate-600 dark:text-slate-400">HTTP 客户端</span>
+            <span class="font-medium">Axios</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+  <!-- License -->
+  <section class="py-20 bg-slate-50 dark:bg-dark-surface">
+    <div class="section-container">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-6">开源协议</h2>
+        <div class="card p-8">
+          <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-blue-100 dark:bg-blue-900/30 mb-6">
+            <span class="text-4xl">📜</span>
+          </div>
+          <h3 class="text-2xl font-semibold mb-4">MIT License</h3>
+          <p class="text-slate-600 dark:text-slate-400 mb-6">
+            LingoSQL 采用 MIT 开源协议，这意味着你可以：
+          </p>
+          <ul class="text-left space-y-2 text-slate-600 dark:text-slate-400 max-w-md mx-auto">
+            <li class="flex items-center">
+              <svg class="w-5 h-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              免费使用，包括商业用途
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              修改和分发代码
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              私有化部署和定制
+            </li>
+          </ul>
+          <div class="mt-8">
+            <a href="https://github.com/yingounet/LingoSQL/blob/main/LICENSE" 
+               target="_blank"
+               rel="noopener noreferrer"
+               class="text-primary-600 dark:text-primary-400 hover:underline">
+              查看完整协议 →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contribute -->
+  <section class="section-container">
+    <div class="card bg-gradient-to-r from-primary-500 to-accent-500 p-12 text-center">
+      <h2 class="text-3xl font-bold text-white mb-4">
+        参与贡献
+      </h2>
+      <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+        LingoSQL 是一个开源项目，欢迎任何人参与贡献。无论是 Bug 报告、功能建议，还是代码提交、文档改进，都是宝贵的贡献。
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="/contribute" 
+           class="inline-flex items-center justify-center px-6 py-3 
+                  bg-white text-primary-600 font-medium rounded-lg
+                  hover:bg-slate-100 transition-colors duration-200">
+          <span>贡献指南</span>
+          <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+        <a href="https://github.com/yingounet/LingoSQL" 
+           target="_blank"
+           rel="noopener noreferrer"
+           class="inline-flex items-center justify-center px-6 py-3 
+                  border-2 border-white text-white font-medium rounded-lg
+                  hover:bg-white/10 transition-colors duration-200">
+          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" 
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-2.028 1.029-2.716-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.688 1.028 1.623 1.028 2.716 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          <span>GitHub 仓库</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

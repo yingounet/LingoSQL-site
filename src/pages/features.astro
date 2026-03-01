@@ -1,0 +1,280 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Badge from '../components/ui/Badge.astro';
+import CodeBlock from '../components/ui/CodeBlock.astro';
+
+const features = [
+  {
+    id: 'auth',
+    title: '用户认证系统',
+    description: '基于 JWT 的安全认证机制',
+    icon: '🔐',
+    status: 'stable',
+    details: 'LingoSQL 使用 JWT (JSON Web Token) 进行用户认证，支持用户注册、登录、密码加密存储等功能。所有敏感操作都需要有效的 Token 验证。',
+    code: `// JWT 配置示例
+auth:
+  jwt_secret: "your-secret-key"
+  token_expiry: 24h
+  password_hash: "bcrypt"`,
+    codeLanguage: 'yaml'
+  },
+  {
+    id: 'connections',
+    title: '数据库连接管理',
+    description: '支持 MySQL 和 PostgreSQL',
+    icon: '🔗',
+    status: 'stable',
+    details: '创建、编辑、删除数据库连接，支持 MySQL 和 PostgreSQL 两种主流数据库。连接信息使用 AES-256 加密存储，确保安全。',
+    code: `// 数据库连接配置
+database:
+  type: "mysql"  // 或 "postgresql"
+  host: "localhost"
+  port: 3306
+  username: "root"
+  password: "encrypted"  // AES-256 加密
+  database: "mydb"`,
+    codeLanguage: 'yaml'
+  },
+  {
+    id: 'editor',
+    title: 'SQL 编辑器',
+    description: '功能丰富的查询执行工具',
+    icon: '📝',
+    status: 'stable',
+    details: '内置 SQL 编辑器支持语法高亮、代码补全、格式化等功能。执行查询后，结果以表格形式展示，支持排序、筛选和导出。',
+    code: `-- 示例查询
+SELECT 
+  u.id,
+  u.username,
+  u.email,
+  COUNT(o.id) as order_count
+FROM users u
+LEFT JOIN orders o ON u.id = o.user_id
+WHERE u.created_at >= '2024-01-01'
+GROUP BY u.id
+ORDER BY order_count DESC;`,
+    codeLanguage: 'sql'
+  },
+  {
+    id: 'history',
+    title: '查询历史记录',
+    description: '自动保存查询历史',
+    icon: '📜',
+    status: 'stable',
+    details: '所有执行的查询都会自动保存到历史记录中，方便回顾和复用。支持按时间、数据库、关键词搜索历史查询。',
+    code: `// 查询历史 API
+GET /api/query/history?page=1&limit=20
+Response: {
+  "total": 100,
+  "data": [
+    {
+      "id": 1,
+      "query": "SELECT * FROM users",
+      "database_id": 1,
+      "executed_at": "2024-01-15T10:30:00Z",
+      "duration_ms": 45
+    }
+  ]
+}`,
+    codeLanguage: 'json'
+  },
+  {
+    id: 'favorites',
+    title: '查询收藏',
+    description: '收藏常用查询语句',
+    icon: '⭐',
+    status: 'developing',
+    details: '将常用的 SQL 查询添加到收藏夹，支持分类管理和快速搜索。可以快速执行收藏的查询，提高工作效率。',
+    code: null
+  },
+  {
+    id: 'schema',
+    title: '表结构管理',
+    description: '查看和管理数据库结构',
+    icon: '🗂️',
+    status: 'developing',
+    details: '可视化查看数据库、表、字段结构，支持创建、修改、删除表结构。查看索引、外键等约束信息。',
+    code: null
+  },
+  {
+    id: 'ai',
+    title: 'AI 生成 SQL',
+    description: '自然语言转 SQL',
+    icon: '🤖',
+    status: 'planned',
+    details: '使用自然语言描述查询需求，AI 自动生成对应的 SQL 语句。支持多轮对话优化查询，让数据库操作更加简单。',
+    code: `// 未来功能示例
+用户：查询最近 30 天注册的用户及其订单数
+AI: SELECT u.*, COUNT(o.id) as order_count 
+    FROM users u 
+    LEFT JOIN orders o ON u.id = o.user_id 
+    WHERE u.created_at >= DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+    GROUP BY u.id;`
+  }
+];
+
+const statusConfig = {
+  stable: { label: '稳定', color: 'green' as const },
+  developing: { label: '开发中', color: 'yellow' as const },
+  planned: { label: '规划中', color: 'gray' as const }
+};
+---
+
+<BaseLayout
+  title="功能特性"
+  description="了解 LingoSQL 的完整功能列表，包括用户认证、数据库连接管理、SQL 编辑器、查询历史等核心特性。"
+>
+  <!-- Header -->
+  <section class="bg-gradient-to-b from-primary-50 to-white dark:from-dark-surface dark:to-dark-bg py-20">
+    <div class="section-container text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-6">
+        功能
+        <span class="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">特性</span>
+      </h1>
+      <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        从连接管理到 SQL 执行，从历史记录到 AI 生成，LingoSQL 提供完整的数据库管理解决方案
+      </p>
+    </div>
+  </section>
+  
+  <!-- Features List -->
+  <section class="section-container">
+    <div class="space-y-16">
+      {features.map((feature, index) => (
+        <div 
+          id={feature.id}
+          class:list={[
+            'grid md:grid-cols-2 gap-8 items-center',
+            index % 2 === 1 ? 'md:direction-rtl' : ''
+          ]}
+        >
+          <!-- Content -->
+          <div class:list={[index % 2 === 1 ? 'md:order-2' : '']}>
+            <div class="flex items-center space-x-3 mb-4">
+              <span class="text-4xl">{feature.icon}</span>
+              <div>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">
+                  {feature.title}
+                </h2>
+                {feature.status && (
+                  <Badge color={statusConfig[feature.status].color} size="sm" class="mt-1">
+                    {statusConfig[feature.status].label}
+                  </Badge>
+                )}
+              </div>
+            </div>
+            <p class="text-lg text-slate-600 dark:text-slate-400 mb-4">
+              {feature.description}
+            </p>
+            <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+              {feature.details}
+            </p>
+          </div>
+          
+          <!-- Code/Visual -->
+          {feature.code && (
+            <div class:list={[index % 2 === 1 ? 'md:order-1' : '']}>
+              <div class="card p-2">
+                <CodeBlock code={feature.code} language={feature.codeLanguage || 'yaml'} />
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+  
+  <!-- Tech Stack -->
+  <section class="py-20 bg-slate-50 dark:bg-dark-surface">
+    <div class="section-container">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">技术栈</h2>
+        <p class="text-slate-600 dark:text-slate-400">
+          LingoSQL 采用现代化的技术栈构建，确保高性能和可维护性
+        </p>
+      </div>
+      
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Backend -->
+        <div class="card p-6 text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-xl bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center">
+            <svg class="w-10 h-10 text-cyan-600 dark:text-cyan-400" viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold mb-2">后端</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">Golang 1.21+</p>
+          <p class="text-sm text-slate-600 dark:text-slate-400">Gin Framework</p>
+        </div>
+        
+        <!-- Frontend -->
+        <div class="card p-6 text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+            <svg class="w-10 h-10 text-green-600 dark:text-green-400" viewBox="0 0 24 24" fill="#42B883">
+              <path d="M2 3h4.5L12 12l5.5-9H22L12 21 2 3z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold mb-2">前端</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">Vue 3 + TypeScript</p>
+          <p class="text-sm text-slate-600 dark:text-slate-400">Element Plus</p>
+        </div>
+        
+        <!-- Database -->
+        <div class="card p-6 text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+            <svg class="w-10 h-10 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="currentColor">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold mb-2">数据库</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">MySQL / PostgreSQL</p>
+          <p class="text-sm text-slate-600 dark:text-slate-400">SQLite (元数据)</p>
+        </div>
+        
+        <!-- Deployment -->
+        <div class="card p-6 text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
+            <svg class="w-10 h-10 text-indigo-600 dark:text-indigo-400" viewBox="0 0 24 24" fill="#2496ED">
+              <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.185m-2.955 2.715h2.119a.186.186 0 00.185-.185V9.006a.185.185 0 00-.185-.186H8.074a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954 0h2.118a.186.186 0 00.186-.185V9.006a.185.185 0 00-.186-.186H5.12a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m11.887-8.132v2.716h2.119a.186.186 0 00.185-.186V3.574a.185.185 0 00-.185-.185h-2.12a.185.185 0 00-.185.185v1.888c0 .102.083.185.186.185M.527 9.006v1.887h2.119a.186.186 0 00.185-.185V9.006a.185.185 0 00-.185-.186H.527a.185.185 0 00-.185.186m11.572 9.544c-3.266 0-5.926-2.534-6.12-5.742H2.073c.195 4.282 3.738 7.695 8.026 7.695 1.778 0 3.406-.593 4.718-1.593V17.1c-1.069.934-2.466 1.497-3.997 1.497"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold mb-2">部署</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400">Docker</p>
+          <p class="text-sm text-slate-600 dark:text-slate-400">Docker Compose</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA -->
+  <section class="section-container">
+    <div class="card bg-gradient-to-r from-primary-500 to-accent-500 p-12 text-center">
+      <h2 class="text-3xl font-bold text-white mb-4">
+        立即开始使用
+      </h2>
+      <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+        查看快速开始文档，几分钟内完成部署
+      </p>
+      <a href="/docs/quick-start" 
+         class="inline-flex items-center justify-center px-6 py-3 
+                bg-white text-primary-600 font-medium rounded-lg
+                hover:bg-slate-100 transition-colors duration-200">
+        <span>查看文档</span>
+        <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .direction-rtl {
+    direction: rtl;
+  }
+  .direction-rtl > * {
+    direction: ltr;
+  }
+</style>

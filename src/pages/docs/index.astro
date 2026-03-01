@@ -1,0 +1,220 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const docSections = [
+  {
+    title: '快速开始',
+    description: '几分钟内完成 LingoSQL 的部署',
+    icon: '🚀',
+    items: [
+      { name: 'Docker 部署', href: '/docs/quick-start#docker', description: '使用 Docker 一键部署' },
+      { name: 'Docker Compose', href: '/docs/quick-start#compose', description: '使用 Docker Compose 编排' },
+      { name: '源码编译', href: '/docs/quick-start#source', description: '从源码构建' }
+    ]
+  },
+  {
+    title: '配置指南',
+    description: '了解配置文件的各项参数',
+    icon: '⚙️',
+    items: [
+      { name: 'config.yaml 详解', href: '/docs/config#yaml', description: '配置文件字段说明' },
+      { name: '环境变量', href: '/docs/config#env', description: '使用环境变量配置' },
+      { name: '数据库加密', href: '/docs/config#encryption', description: 'AES-256 加密配置' }
+    ]
+  },
+  {
+    title: '使用教程',
+    description: '从零开始使用 LingoSQL',
+    icon: '📖',
+    items: [
+      { name: '添加数据库连接', href: '/docs/tutorial#connection', description: '创建第一个数据库连接' },
+      { name: '执行 SQL 查询', href: '/docs/tutorial#query', description: '编写和执行 SQL' },
+      { name: '查看历史记录', href: '/docs/tutorial#history', description: '管理查询历史' }
+    ]
+  },
+  {
+    title: 'API 参考',
+    description: 'RESTful API 文档',
+    icon: '📡',
+    items: [
+      { name: '认证 API', href: '/docs/api#auth', description: '登录、注册、Token' },
+      { name: '连接管理 API', href: '/docs/api#connections', description: '数据库连接 CRUD' },
+      { name: '查询 API', href: '/docs/api#query', description: '执行 SQL 查询' }
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title="文档"
+  description="LingoSQL 完整文档，包括快速开始、配置指南、使用教程和 API 参考。"
+>
+  {/* Header */}
+  <section class="bg-gradient-to-b from-primary-50 to-white dark:from-dark-surface dark:to-dark-bg py-20">
+    <div class="section-container text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-6">
+        文档
+        <span class="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">中心</span>
+      </h1>
+      <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        从快速部署到高级配置，从基础使用到 API 集成，这里有你需要了解的一切
+      </p>
+    </div>
+  </section>
+  
+  {/* Doc Sections */}
+  <section class="section-container">
+    <div class="grid md:grid-cols-2 gap-8">
+      {docSections.map((section) => (
+        <div class="card p-8">
+          <div class="flex items-center space-x-3 mb-4">
+            <span class="text-4xl">{section.icon}</span>
+            <div>
+              <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">
+                {section.title}
+              </h2>
+              <p class="text-slate-600 dark:text-slate-400">
+                {section.description}
+              </p>
+            </div>
+          </div>
+          
+          <ul class="space-y-3">
+            {section.items.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="block p-4 rounded-lg bg-slate-50 dark:bg-slate-800 
+                         hover:bg-slate-100 dark:hover:bg-slate-700 
+                         transition-colors duration-200"
+                >
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h3 class="font-medium text-slate-900 dark:text-slate-100">
+                        {item.name}
+                      </h3>
+                      <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                        {item.description}
+                      </p>
+                    </div>
+                    <svg class="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+  
+  {/* Quick Start */}
+  <section class="py-20 bg-slate-50 dark:bg-dark-surface">
+    <div class="section-container">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-8">快速开始</h2>
+        
+        <div class="card p-8">
+          <p class="text-slate-600 dark:text-slate-400 mb-6">
+            使用 Docker 快速部署 LingoSQL，只需一条命令即可启动服务。
+          </p>
+          
+          <div class="bg-slate-900 rounded-xl p-6 overflow-x-auto mb-6">
+            <pre class="text-sm text-slate-300"><code>docker run -d \
+  --name lingosql \
+  -p 8080:8080 \
+  -v lingosql_data:/app/data \
+  -e JWT_SECRET="your-secret-key" \
+  -e DB_ENCRYPTION_KEY="your-32-char-encryption-key" \
+  registry.cn-shanghai.aliyuncs.com/yingounet/lingosql:latest</code></pre>
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <p class="text-sm text-slate-500 dark:text-slate-500">
+              启动后访问 <code class="text-primary-600">http://localhost:8080</code>
+            </p>
+            <a href="/docs/quick-start"
+               class="text-primary-600 dark:text-primary-400 font-medium hover:underline">
+              查看详细文档 →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  {/* API Preview */}
+  <section class="section-container">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-8">API 预览</h2>
+      
+      <div class="space-y-4">
+        {/* Login API */}
+        <div class="card p-6">
+          <div class="flex items-center space-x-3 mb-4">
+            <span class="px-3 py-1 rounded text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">POST</span>
+            <code class="text-sm text-slate-600 dark:text-slate-400">/api/auth/login</code>
+          </div>
+          <p class="text-slate-600 dark:text-slate-400 mb-4">用户登录，返回 JWT Token</p>
+          <div class="bg-slate-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-xs text-slate-300"><code>{`{
+  "username": "admin",
+  "password": "password123"
+}`}</code></pre>
+          </div>
+        </div>
+        
+        {/* Query API */}
+        <div class="card p-6">
+          <div class="flex items-center space-x-3 mb-4">
+            <span class="px-3 py-1 rounded text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400">POST</span>
+            <code class="text-sm text-slate-600 dark:text-slate-400">/api/query/execute</code>
+          </div>
+          <p class="text-slate-600 dark:text-slate-400 mb-4">执行 SQL 查询</p>
+          <div class="bg-slate-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-xs text-slate-300"><code>{`{
+  "connection_id": 1,
+  "query": "SELECT * FROM users LIMIT 10"
+}`}</code></pre>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-8">
+        <a href="/docs/api" 
+           class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:underline font-medium">
+          <span>查看完整 API 文档</span>
+          <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  {/* CTA */}
+  <section class="section-container">
+    <div class="card bg-gradient-to-r from-primary-500 to-accent-500 p-12 text-center">
+      <h2 class="text-3xl font-bold text-white mb-4">
+        需要帮助？
+      </h2>
+      <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+        如果文档没有解决你的问题，欢迎在 GitHub 上提 Issue
+      </p>
+      <a href="https://github.com/yingounet/LingoSQL/issues" 
+         target="_blank"
+         rel="noopener noreferrer"
+         class="inline-flex items-center justify-center px-6 py-3 
+                bg-white text-primary-600 font-medium rounded-lg
+                hover:bg-slate-100 transition-colors duration-200">
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" clip-rule="evenodd" 
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-2.028 1.029-2.716-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.688 1.028 1.623 1.028 2.716 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+        </svg>
+        <span>提交 Issue</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

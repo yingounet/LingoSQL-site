@@ -1,0 +1,42 @@
+{
+  "$ref": "#/definitions/features",
+  "definitions": {
+    "features": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "stable",
+            "developing",
+            "planned"
+          ],
+          "default": "stable"
+        },
+        "order": {
+          "type": "number",
+          "default": 0
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "icon"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

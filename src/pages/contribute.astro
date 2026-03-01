@@ -1,0 +1,275 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="贡献指南"
+  description="了解如何为 LingoSQL 项目做出贡献，包括代码提交、Bug 报告、文档改进等方式。"
+>
+  <!-- Header -->
+  <section class="bg-gradient-to-b from-primary-50 to-white dark:from-dark-surface dark:to-dark-bg py-20">
+    <div class="section-container text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-6">
+        参与
+        <span class="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">贡献</span>
+      </h1>
+      <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        LingoSQL 是一个开源项目，欢迎任何人参与贡献。你的每一份贡献都让项目变得更好。
+      </p>
+    </div>
+  </section>
+  
+  <!-- Ways to Contribute -->
+  <section class="section-container">
+    <h2 class="text-3xl font-bold mb-8 text-center">贡献方式</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="card p-6">
+        <div class="text-4xl mb-4">🐛</div>
+        <h3 class="text-xl font-semibold mb-2">报告 Bug</h3>
+        <p class="text-slate-600 dark:text-slate-400 mb-4">
+          发现 Bug？请在 GitHub Issues 中创建 Issue，详细描述问题和复现步骤。
+        </p>
+        <a href="https://github.com/yingounet/LingoSQL/issues" 
+           target="_blank"
+           rel="noopener noreferrer"
+           class="text-primary-600 dark:text-primary-400 hover:underline text-sm font-medium">
+          提交 Bug →
+        </a>
+      </div>
+      
+      <div class="card p-6">
+        <div class="text-4xl mb-4">💡</div>
+        <h3 class="text-xl font-semibold mb-2">功能建议</h3>
+        <p class="text-slate-600 dark:text-slate-400 mb-4">
+          有新的功能想法？欢迎提出建议，我们一起讨论实现方案。
+        </p>
+        <a href="https://github.com/yingounet/LingoSQL/issues" 
+           target="_blank"
+           rel="noopener noreferrer"
+           class="text-primary-600 dark:text-primary-400 hover:underline text-sm font-medium">
+          提交建议 →
+        </a>
+      </div>
+      
+      <div class="card p-6">
+        <div class="text-4xl mb-4">📝</div>
+        <h3 class="text-xl font-semibold mb-2">改进文档</h3>
+        <p class="text-slate-600 dark:text-slate-400 mb-4">
+          文档不够清晰？帮助改进文档，让更多人能够快速上手。
+        </p>
+        <a href="https://github.com/yingounet/LingoSQL" 
+           target="_blank"
+           rel="noopener noreferrer"
+           class="text-primary-600 dark:text-primary-400 hover:underline text-sm font-medium">
+          查看文档 →
+        </a>
+      </div>
+      
+      <div class="card p-6">
+        <div class="text-4xl mb-4">💻</div>
+        <h3 class="text-xl font-semibold mb-2">提交代码</h3>
+        <p class="text-slate-600 dark:text-slate-400 mb-4">
+          修复 Bug 或实现新功能，提交 Pull Request，我们会尽快审核。
+        </p>
+        <a href="https://github.com/yingounet/LingoSQL/pulls" 
+           target="_blank"
+           rel="noopener noreferrer"
+           class="text-primary-600 dark:text-primary-400 hover:underline text-sm font-medium">
+          查看 PR →
+        </a>
+      </div>
+      
+      <div class="card p-6">
+        <div class="text-4xl mb-4">⭐</div>
+        <h3 class="text-xl font-semibold mb-2">Star 项目</h3>
+        <p class="text-slate-600 dark:text-slate-400 mb-4">
+          在 GitHub 上给项目一个 Star，这是对开发者最大的支持。
+        </p>
+        <a href="https://github.com/yingounet/LingoSQL" 
+           target="_blank"
+           rel="noopener noreferrer"
+           class="text-primary-600 dark:text-primary-400 hover:underline text-sm font-medium">
+          前往 GitHub →
+        </a>
+      </div>
+      
+      <div class="card p-6">
+        <div class="text-4xl mb-4">📢</div>
+        <h3 class="text-xl font-semibold mb-2">推广宣传</h3>
+        <p class="text-slate-600 dark:text-slate-400 mb-4">
+          向朋友推荐 LingoSQL，在社交媒体上分享，帮助项目获得更多关注。
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Development Setup -->
+  <section class="py-20 bg-slate-50 dark:bg-dark-surface">
+    <div class="section-container">
+      <h2 class="text-3xl font-bold mb-8 text-center">开发环境设置</h2>
+      <div class="max-w-3xl mx-auto">
+        <div class="card p-8 mb-6">
+          <h3 class="text-xl font-semibold mb-4">前置要求</h3>
+          <ul class="space-y-2 text-slate-600 dark:text-slate-400">
+            <li class="flex items-center">
+              <svg class="w-5 h-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Go 1.21+
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Node.js 18+
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              pnpm
+            </li>
+            <li class="flex items-center">
+              <svg class="w-5 h-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Git
+            </li>
+          </ul>
+        </div>
+        
+        <div class="card p-8 mb-6">
+          <h3 class="text-xl font-semibold mb-4">1. Fork 仓库</h3>
+          <div class="bg-slate-900 rounded-xl p-6 overflow-x-auto">
+            <pre class="text-sm text-slate-300"><code># 在 GitHub 上点击 Fork 按钮
+# 然后克隆你的 Fork
+git clone https://github.com/YOUR_USERNAME/LingoSQL.git
+cd LingoSQL</code></pre>
+          </div>
+        </div>
+        
+        <div class="card p-8 mb-6">
+          <h3 class="text-xl font-semibold mb-4">2. 创建分支</h3>
+          <div class="bg-slate-900 rounded-xl p-6 overflow-x-auto">
+            <pre class="text-sm text-slate-300"><code># 基于 main 分支创建新分支
+git checkout -b feature/your-feature-name</code></pre>
+          </div>
+        </div>
+        
+        <div class="card p-8 mb-6">
+          <h3 class="text-xl font-semibold mb-4">3. 开发并测试</h3>
+          <div class="bg-slate-900 rounded-xl p-6 overflow-x-auto">
+            <pre class="text-sm text-slate-300"><code># 后端开发
+cd backend
+go run main.go
+
+# 前端开发
+cd frontend
+pnpm dev</code></pre>
+          </div>
+        </div>
+        
+        <div class="card p-8">
+          <h3 class="text-xl font-semibold mb-4">4. 提交 Pull Request</h3>
+          <div class="bg-slate-900 rounded-xl p-6 overflow-x-auto">
+            <pre class="text-sm text-slate-300"><code># 提交更改
+git add .
+git commit -m "feat: add new feature"
+
+# 推送到远程
+git push origin feature/your-feature-name
+
+# 在 GitHub 上创建 Pull Request</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Code Style -->
+  <section class="section-container">
+    <h2 class="text-3xl font-bold mb-8 text-center">代码规范</h2>
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div class="card p-8">
+        <h3 class="text-xl font-semibold mb-4">🔧 Go 代码</h3>
+        <ul class="space-y-2 text-slate-600 dark:text-slate-400">
+          <li>• 遵循 <code>gofmt</code> 格式化</li>
+          <li>• 使用 <code>golint</code> 检查代码</li>
+          <li>• 函数命名使用驼峰式</li>
+          <li>• 添加必要的注释</li>
+          <li>• 编写单元测试</li>
+        </ul>
+      </div>
+      
+      <div class="card p-8">
+        <h3 class="text-xl font-semibold mb-4">🎨 TypeScript 代码</h3>
+        <ul class="space-y-2 text-slate-600 dark:text-slate-400">
+          <li>• 使用 ESLint + Prettier</li>
+          <li>• 使用 TypeScript 严格模式</li>
+          <li>• 组件使用 Composition API</li>
+          <li>• 添加必要的类型定义</li>
+          <li>• 使用有意义的变量名</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+  <!-- PR Guidelines -->
+  <section class="py-20 bg-slate-50 dark:bg-dark-surface">
+    <div class="section-container">
+      <h2 class="text-3xl font-bold mb-8 text-center">Pull Request 指南</h2>
+      <div class="max-w-3xl mx-auto">
+        <div class="card p-8">
+          <h3 class="text-xl font-semibold mb-4">PR 标题规范</h3>
+          <p class="text-slate-600 dark:text-slate-400 mb-4">
+            使用约定式提交格式：
+          </p>
+          <div class="bg-slate-900 rounded-xl p-6 overflow-x-auto mb-6">
+            <pre class="text-sm text-slate-300"><code>&lt;type&gt;(&lt;scope&gt;): &lt;description&gt;
+
+# 示例
+feat(auth): add user registration API
+fix(editor): resolve SQL syntax highlighting issue
+docs(readme): update installation steps
+refactor(db): optimize connection pooling</code></pre>
+          </div>
+          
+          <h3 class="text-xl font-semibold mb-4">类型说明</h3>
+          <ul class="space-y-2 text-slate-600 dark:text-slate-400">
+            <li><code class="text-primary-600">feat</code> - 新功能</li>
+            <li><code class="text-primary-600">fix</code> - Bug 修复</li>
+            <li><code class="text-primary-600">docs</code> - 文档更新</li>
+            <li><code class="text-primary-600">style</code> - 代码格式调整</li>
+            <li><code class="text-primary-600">refactor</code> - 代码重构</li>
+            <li><code class="text-primary-600">test</code> - 测试相关</li>
+            <li><code class="text-primary-600">chore</code> - 构建/工具配置</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA -->
+  <section class="section-container">
+    <div class="card bg-gradient-to-r from-primary-500 to-accent-500 p-12 text-center">
+      <h2 class="text-3xl font-bold text-white mb-4">
+        准备好了吗？
+      </h2>
+      <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+        开始你的第一次贡献吧！如果有任何问题，欢迎在 GitHub 上提问。
+      </p>
+      <a href="https://github.com/yingounet/LingoSQL" 
+         target="_blank"
+         rel="noopener noreferrer"
+         class="inline-flex items-center justify-center px-6 py-3 
+                bg-white text-primary-600 font-medium rounded-lg
+                hover:bg-slate-100 transition-colors duration-200">
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" clip-rule="evenodd" 
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-2.028 1.029-2.716-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.688 1.028 1.623 1.028 2.716 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+        </svg>
+        <span>前往 GitHub</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

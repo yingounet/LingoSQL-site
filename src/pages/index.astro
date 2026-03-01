@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/home/HeroSection.astro';
+import FeatureCard from '../components/home/FeatureCard.astro';
+---
+
+<BaseLayout
+  title="首页"
+  description="LingoSQL - 现代化的 Web 数据库管理工具，支持 MySQL 和 PostgreSQL。通过浏览器实现数据库的连接管理、SQL 查询执行与结果查看。"
+>
+  <!-- Hero Section -->
+  <HeroSection />
+  
+  <!-- Features Section -->
+  <section class="section-container bg-white dark:bg-dark-bg">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+        强大易用的
+        <span class="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">功能特性</span>
+      </h2>
+      <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        从连接管理到 SQL 执行，LingoSQL 提供完整的数据库管理体验
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <FeatureCard
+        title="用户认证系统"
+        description="基于 JWT 的安全认证机制，支持用户注册、登录和权限管理，保障数据库访问安全。"
+        icon="🔐"
+        href="/features#auth"
+        delay={0.1}
+      />
+      
+      <FeatureCard
+        title="数据库连接管理"
+        description="支持 MySQL 和 PostgreSQL 数据库连接，AES-256 加密存储敏感信息，安全便捷。"
+        icon="🔗"
+        href="/features#connections"
+        delay={0.2}
+      />
+      
+      <FeatureCard
+        title="SQL 编辑器"
+        description="功能丰富的 SQL 编辑器，支持语法高亮、代码补全，执行查询并查看结果表格。"
+        icon="📝"
+        href="/features#editor"
+        delay={0.3}
+      />
+      
+      <FeatureCard
+        title="查询历史记录"
+        description="自动保存查询历史，方便回顾和复用之前的 SQL 语句，提高工作效率。"
+        icon="📜"
+        href="/features#history"
+        delay={0.4}
+      />
+      
+      <FeatureCard
+        title="查询收藏"
+        description="收藏常用查询，快速访问重要 SQL 语句。"
+        icon="⭐"
+        status="developing"
+        delay={0.5}
+      />
+      
+      <FeatureCard
+        title="AI 生成 SQL"
+        description="使用自然语言描述，AI 自动生成 SQL 查询语句，让数据库操作更简单。"
+        icon="🤖"
+        status="planned"
+        delay={0.6}
+      />
+    </div>
+  </section>
+  
+  <!-- Security Section -->
+  <section class="py-20 bg-slate-50 dark:bg-dark-surface">
+    <div class="section-container">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl font-bold mb-6">
+            企业级
+            <span class="bg-gradient-to-r from-primary-600 to-secondary-500 bg-clip-text text-transparent">安全保护</span>
+          </h2>
+          <ul class="space-y-4">
+            <li class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <div>
+                <strong class="text-slate-900 dark:text-slate-100">JWT 认证</strong>
+                <p class="text-slate-600 dark:text-slate-400">安全的用户认证机制，保护数据库访问权限</p>
+              </div>
+            </li>
+            <li class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <div>
+                <strong class="text-slate-900 dark:text-slate-100">AES-256 加密</strong>
+                <p class="text-slate-600 dark:text-slate-400">数据库连接信息加密存储，防止敏感数据泄露</p>
+              </div>
+            </li>
+            <li class="flex items-start space-x-3">
+              <svg class="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <div>
+                <strong class="text-slate-900 dark:text-slate-100">SQLite 元数据存储</strong>
+                <p class="text-slate-600 dark:text-slate-400">轻量级元数据存储，独立于业务数据库</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="card p-8">
+          <div class="bg-slate-900 rounded-xl p-6 overflow-x-auto">
+            <pre class="text-sm text-slate-300"><code>```yaml
+# config.yaml 示例
+server:
+  port: 8080
+  
+auth:
+  jwt_secret: "your-secret-key"
+  token_expiry: 24h
+  
+database:
+  encryption_key: "aes-256-key"
+  sqlite_path: "./data/meta.db"
+```</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="section-container">
+    <div class="card bg-gradient-to-r from-primary-500 to-accent-500 p-12 text-center">
+      <h2 class="text-3xl font-bold text-white mb-4">
+        准备好开始使用了吗？
+      </h2>
+      <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+        只需几分钟即可完成部署，立即体验现代化的数据库管理方式
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="/docs/quick-start" 
+           class="inline-flex items-center justify-center px-6 py-3 
+                  bg-white text-primary-600 font-medium rounded-lg
+                  hover:bg-slate-100 transition-colors duration-200">
+          <span>查看部署文档</span>
+          <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+        <a href="https://github.com/yingounet/LingoSQL" 
+           target="_blank"
+           rel="noopener noreferrer"
+           class="inline-flex items-center justify-center px-6 py-3 
+                  border-2 border-white text-white font-medium rounded-lg
+                  hover:bg-white/10 transition-colors duration-200">
+          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" 
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-2.028 1.029-2.716-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.688 1.028 1.623 1.028 2.716 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          <span>在 GitHub 上 Star</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,16 @@
+{
+  "name": "LingoSQL",
+  "short_name": "LingoSQL",
+  "description": "现代化的 Web 数据库管理工具",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "$ref": "#/definitions/changelog",
+  "definitions": {
+    "changelog": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "feature",
+            "fix",
+            "breaking",
+            "improvement"
+          ]
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "version",
+        "date"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

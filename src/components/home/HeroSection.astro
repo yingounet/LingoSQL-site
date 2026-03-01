@@ -1,0 +1,97 @@
+---
+// src/components/home/HeroSection.astro
+import Button from '../ui/Button.astro';
+---
+
+<section class="relative overflow-hidden bg-gradient-to-b from-primary-50 to-white 
+                dark:from-dark-surface dark:to-dark-bg py-20 sm:py-32">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-30 dark:opacity-20">
+    <div class="absolute -top-40 -right-40 w-80 h-80 bg-primary-200 dark:bg-primary-900 rounded-full blur-3xl" />
+    <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-accent-200 dark:bg-accent-900 rounded-full blur-3xl" />
+  </div>
+  
+  <div class="relative section-container">
+    <div class="text-center max-w-4xl mx-auto">
+      <!-- Badge -->
+      <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full 
+                  bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 
+                  text-sm font-medium mb-8 animate-fade-in">
+        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+        <span>刚刚开源 · 欢迎贡献</span>
+      </div>
+      
+      <!-- Heading -->
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 animate-slide-up">
+        现代化的
+        <span class="bg-gradient-to-r from-primary-600 via-secondary-500 to-accent-500 
+                     bg-clip-text text-transparent">Web 数据库管理工具</span>
+      </h1>
+      
+      <!-- Description -->
+      <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto animate-slide-up" 
+           style="animation-delay: 0.1s">
+        LingoSQL 是一个基于 Web 的数据库管理工具，支持 MySQL 和 PostgreSQL。
+        简洁的界面，强大的功能，让数据库管理变得前所未有的简单。
+      </p>
+      
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up" 
+           style="animation-delay: 0.2s">
+        <Button href="/docs/quick-start" variant="primary" size="lg">
+          <span>快速开始</span>
+          <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </Button>
+        
+        <Button href="https://github.com/yingounet/LingoSQL" variant="secondary" size="lg" external>
+          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" 
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-2.028 1.029-2.716-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.688 1.028 1.623 1.028 2.716 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+          </svg>
+          <span>查看源码</span>
+        </Button>
+      </div>
+      
+      <!-- Tech Stack Preview -->
+      <div class="mt-16 pt-8 border-t border-slate-200 dark:border-dark-border animate-fade-in" 
+           style="animation-delay: 0.3s">
+        <p class="text-sm text-slate-500 dark:text-slate-500 mb-6">Powered by</p>
+        <div class="flex flex-wrap items-center justify-center gap-8 opacity-70">
+          <!-- Go -->
+          <div class="flex items-center space-x-2">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="#00ADD8">
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+            <span class="text-sm font-medium">Go</span>
+          </div>
+          
+          <!-- Vue -->
+          <div class="flex items-center space-x-2">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="#42B883">
+              <path d="M2 3h4.5L12 12l5.5-9H22L12 21 2 3z"/>
+            </svg>
+            <span class="text-sm font-medium">Vue 3</span>
+          </div>
+          
+          <!-- TypeScript -->
+          <div class="flex items-center space-x-2">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="#3178C6">
+              <path d="M1 3h22v18H1V3zm16 11.5v4h2v-4h2v-2h-6v2h2zm-8 0v4h2v-2.5h1.5v-1.5H9.5v-1.5h2v-2h-4v2h1.5v1.5z"/>
+            </svg>
+            <span class="text-sm font-medium">TypeScript</span>
+          </div>
+          
+          <!-- Docker -->
+          <div class="flex items-center space-x-2">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="#2496ED">
+              <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.185m-2.955 2.715h2.119a.186.186 0 00.185-.185V9.006a.185.185 0 00-.185-.186H8.074a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954 0h2.118a.186.186 0 00.186-.185V9.006a.185.185 0 00-.186-.186H5.12a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m11.887-8.132v2.716h2.119a.186.186 0 00.185-.186V3.574a.185.185 0 00-.185-.185h-2.12a.185.185 0 00-.185.185v1.888c0 .102.083.185.186.185M.527 9.006v1.887h2.119a.186.186 0 00.185-.185V9.006a.185.185 0 00-.185-.186H.527a.185.185 0 00-.185.186m11.572 9.544c-3.266 0-5.926-2.534-6.12-5.742H2.073c.195 4.282 3.738 7.695 8.026 7.695 1.778 0 3.406-.593 4.718-1.593V17.1c-1.069.934-2.466 1.497-3.997 1.497"/>
+            </svg>
+            <span class="text-sm font-medium">Docker</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
