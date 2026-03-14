@@ -97,6 +97,58 @@ Response: {
     code: null
   },
   {
+    id: 'user-management',
+    title: '用户和权限管理',
+    description: '管理数据库用户和权限',
+    icon: '👥',
+    status: 'stable',
+    details: '创建、编辑、删除数据库用户，分配和管理用户权限。支持细粒度的权限控制，确保数据库访问安全。',
+    code: `-- 示例：创建用户并授权
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+GRANT SELECT, INSERT, UPDATE ON mydb.* TO 'newuser'@'localhost';
+FLUSH PRIVILEGES;`,
+    codeLanguage: 'sql'
+  },
+  {
+    id: 'import-export',
+    title: '数据导入/导出',
+    description: '支持多种格式的数据导入导出',
+    icon: '📤',
+    status: 'stable',
+    details: '支持将查询结果导出为 CSV、Excel 等格式，也可以从外部文件导入数据到数据库。方便数据迁移和备份。',
+    code: `// 导出查询结果为 CSV
+GET /api/export/csv?query_id=123
+Response: data.csv
+
+// 从 CSV 导入数据
+POST /api/import/csv
+Content-Type: multipart/form-data
+- file: data.csv
+- table: users
+- mode: insert | update | replace`,
+    codeLanguage: 'http'
+  },
+  {
+    id: 'audit-log',
+    title: '审计日志',
+    description: '记录所有数据库操作',
+    icon: '📋',
+    status: 'stable',
+    details: '自动记录所有用户的数据库操作，包括查询执行、数据修改、结构变更等。支持日志查询和导出，满足合规要求。',
+    code: `// 审计日志示例
+{
+  "id": 1,
+  "user_id": 5,
+  "action": "QUERY_EXECUTED",
+  "database": "mydb",
+  "query": "SELECT * FROM users",
+  "timestamp": "2024-01-15T10:30:00Z",
+  "duration_ms": 45,
+  "status": "success"
+}`,
+    codeLanguage: 'json'
+  },
+  {
     id: 'ai',
     title: 'AI 生成 SQL',
     description: '自然语言转 SQL',
